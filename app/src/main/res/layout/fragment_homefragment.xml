@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<ScrollView android:layout_width="match_parent"
 
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".homefragment">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    tools:context=".wallpaper.homefragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/wallpapersearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/search_view"
-            android:hint="Search wallpaper here"/>
+
 
         <LinearLayout
     android:layout_width="wrap_content"
@@ -34,43 +28,57 @@
         android:id="@+id/txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Edtior's Choice"
+        android:layout_marginTop="10dp"
+        android:text="Editor's Pick"
         android:layout_marginLeft="40dp"
         android:textColor="@color/black"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
     <TextView
         android:id="@+id/more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="More >"
-        android:layout_marginLeft="130dp"
+        android:layout_marginLeft="180dp"
         android:textColor="@color/purple_200"
          />
 
+
 </LinearLayout>
+<RelativeLayout
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+
+            android:layout_height="match_parent"
 
             android:id="@+id/editorchoice"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:id="@+id/prgrsmain"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
+
 
         <TextView
 
             android:id="@+id/colortone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="The color Tone"
             android:layout_marginLeft="40dp"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -83,21 +91,23 @@
             android:id="@+id/cat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="Categories"
             android:layout_marginLeft="40dp"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/purple_200"
+            android:paddingHorizontal="10dp"
             android:id="@+id/categories"/>
     </LinearLayout>
-    </ScrollView>
+
+
 
 
 
 
 </FrameLayout>
+</ScrollView>

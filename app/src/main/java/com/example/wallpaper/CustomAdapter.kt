@@ -1,5 +1,6 @@
 package com.example.wallpaper
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+
 
 class CustomAdapter(private val mList: List<colormodel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
@@ -27,6 +29,14 @@ class CustomAdapter(private val mList: List<colormodel>) : RecyclerView.Adapter<
         val ItemsViewModel = mList[position]
         // sets the image to the imageview from our itemHolder class
         holder.imageView.setBackgroundColor(Color.parseColor(ItemsViewModel.colocode))
+        holder.imageView.setOnClickListener{
+            val intent= Intent(holder.itemView.context, wallpaper_result::class.java)
+            val q="https://api.pexels.com/v1/search?query="+ItemsViewModel.coloname
+            intent.putExtra("url",q)
+            holder.itemView.context.startActivity(intent)
+
+        }
+
     }
 
     // return the number of the items in the list

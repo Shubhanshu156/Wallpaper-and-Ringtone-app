@@ -6,9 +6,48 @@
     tools:context=".discoverFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello discober fragment" />
+
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/songrcv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/search"
+
+            android:layout_marginTop="40dp" />
+
+        <ProgressBar
+            android:id="@+id/failed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/songrcv"
+
+            android:layout_centerHorizontal="true"
+            android:visibility="visible" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:id="@+id/error"
+            android:text="No Ringtone found 💔"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
 
 </FrameLayout>

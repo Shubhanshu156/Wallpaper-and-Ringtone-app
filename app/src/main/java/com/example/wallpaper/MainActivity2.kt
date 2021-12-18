@@ -1,4 +1,4 @@
-package com.example.wallpaper
+package com.example.wallpaper.wallpaper
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +14,9 @@ import kotlin.math.sign
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.wallpaper.R
+
+
 
 
 class MainActivity2 : AppCompatActivity() {

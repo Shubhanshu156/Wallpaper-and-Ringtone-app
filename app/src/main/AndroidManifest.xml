@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.wallpaper">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,13 +21,27 @@
         android:roundIcon="@drawable/ic_baseline_wallpaper_24"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wallpaper">
+        <receiver
+            android:name=".download_complete"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity
+            android:name=".favourates"
+            android:exported="false" />
+        <activity
+            android:name=".wallpaper_result"
+            android:exported="false" />
+        <activity
+            android:name=".wallpaper_activity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-
+            android:name=".wallpaper.MainActivity2"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan|adjustResize|stateVisible" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

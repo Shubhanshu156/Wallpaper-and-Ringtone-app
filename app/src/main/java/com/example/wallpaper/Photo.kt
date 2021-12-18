@@ -1,5 +1,7 @@
 package com.example.wallpaper
 
+import com.example.wallpaper.Src
+
 data class Photo(
     val avg_color: String,
     val height: Int,

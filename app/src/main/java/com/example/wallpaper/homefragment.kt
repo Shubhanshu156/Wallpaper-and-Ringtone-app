@@ -1,12 +1,14 @@
 package com.example.wallpaper
 
 import android.content.ClipData
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,16 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import com.example.wallpaper.adapter
 import kotlinx.android.synthetic.main.fragment_homefragment.*
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import com.android.volley.AuthFailureError
+import com.android.volley.Response
+import com.android.volley.Response.ErrorListener
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.android.volley.VolleyError
+import com.android.volley.VolleyLog
+import com.google.gson.GsonBuilder
 
 
 private const val ARG_PARAM1 = "param1"
@@ -47,21 +59,63 @@ class homefragment : Fragment() {
     ): View? {
         val rootview = inflater.inflate(R.layout.fragment_homefragment, container, false)
         val rcv = rootview.findViewById<RecyclerView>(R.id.editorchoice)
+        rcv.setHasFixedSize(true)
+        rcv.setItemViewCacheSize(20)
+        rcv.setDrawingCacheEnabled(true)
+        rcv.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH)
+        rcv
+            .getViewTreeObserver()
+            .addOnGlobalLayoutListener(
+                object : OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+
+                        rcv
+                            .getViewTreeObserver()
+                            .removeOnGlobalLayoutListener(this)
+                        prgrsmain.visibility=View.GONE
+                    }
+                })
 
         val editoradapter = adapter()
-
         val llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.HORIZONTAL
         rcv.setLayoutManager(llm)
         rcv.setAdapter(editoradapter)
-        var a = ArrayList<Photo>()
-        GlobalScope.launch(Dispatchers.Main) {
-            val arr = withContext(Dispatchers.IO) { geteditor() }
-            Log.d(TAG, "onCreateView: " + arr.size)
-            Toast.makeText(context, "in  home fragment" + arr.size, Toast.LENGTH_SHORT).show()
-            editoradapter.seteditor(arr)
-            editoradapter.notifyDataSetChanged()
+//        var a = ArrayList<Photo>()
+//        GlobalScope.launch(Dispatchers.Main) {
+//            val arr = withContext(Dispatchers.IO) { geteditor() }}
+
+        val linkTrang = "https://api.pexels.com/v1/curated"
+        val queue = Volley.newRequestQueue(context)
+        var ans=ArrayList<Photo>()
+
+        val stringRequest = object: StringRequest(linkTrang,
+            Response.Listener<String> { response ->
+
+                val gsonBuilder=GsonBuilder()
+                val gson=gsonBuilder.create()
+                val editorreslut = gson.fromJson<result>(response,result::class.java)!!
+                ans=editorreslut.photos
+                editoradapter.seteditor(ans)
+                editoradapter.notifyDataSetChanged()
+
+                Log.d(TAG, "geteditor: in suceess "+ans.size)
+
+            },
+            ErrorListener {
+                Toast.makeText(context, "not able to fetch data", Toast.LENGTH_SHORT).show()
+            }
+        )
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "563492ad6f91700001000001064410a0217f42f5836f093e332ea9c0"
+                return headers
+            }
         }
+        Log.d(TAG, "geteditor: calling fun"+ans.size)
+        queue.add(stringRequest)
+
 
         rcv2 = rootview.findViewById<RecyclerView>(R.id.colorrcv)
         val coloradapter=CustomAdapter(setupcolor())
@@ -76,6 +130,12 @@ class homefragment : Fragment() {
         catmanager.orientation = LinearLayoutManager.VERTICAL
         rcv3.setLayoutManager(catmanager)
         rcv3.adapter=categoryadatper
+        val more=rootview.findViewById<TextView>(R.id.more)
+        more.setOnClickListener{
+            val intent=Intent(context,wallpaper_result::class.java)
+            intent.putExtra("url","https://api.pexels.com/v1/curated")
+            startActivity(intent)
+        }
 
 
 
@@ -108,7 +168,7 @@ class homefragment : Fragment() {
 
         var temp=ArrayList<categoryclass>()
         temp.add(categoryclass("Art","https://images.pexels.com/photos/3246665/pexels-photo-3246665.png?auto=compress&cs=tinysrgb&h=650&w=940"))
-        temp.add(categoryclass("Anime","https://images.pexels.com/photos/69378/pexels-photo-69378.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"))
+        temp.add(categoryclass("Ocean","https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress\\u0026cs=tinysrgb\\u0026h=650\\u0026w=940"))
         b.add(temp)
 
          temp=ArrayList<categoryclass>()
@@ -117,7 +177,7 @@ class homefragment : Fragment() {
         b.add(temp)
 
         temp=ArrayList<categoryclass>()
-        temp.add(categoryclass("Superheroes","https://images.pexels.com/photos/4061662/pexels-photo-4061662.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"))
+        temp.add(categoryclass("Flowers","https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress\\u0026cs=tinysrgb\\u0026h=650\\u0026w=940"))
         temp.add(categoryclass("Cars","https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"))
         b.add(temp)
 
@@ -163,17 +223,56 @@ class homefragment : Fragment() {
     }
 
     suspend fun geteditor():ArrayList<Photo>{
-        val okHttpClient= OkHttpClient()
-//        val request: Request = Builder().url(url).headers(headerbuild).build()
-        val request= Request.Builder().addHeader("Authorization","563492ad6f91700001000001064410a0217f42f5836f093e332ea9c0").url("https://api.pexels.com/v1/curated").build()
-        val response=okHttpClient.newCall(request).execute()
-        val res=response.body?.string()
-        val gson= Gson()
-        val editorreslut=gson.fromJson<result>(res,result::class.java)
-        Log.d(TAG, "geteditor: "+editorreslut.photos.size)
-        return editorreslut.photos
+        val linkTrang = "https://api.pexels.com/v1/curated"
+        val queue = Volley.newRequestQueue(context)
+        var ans=ArrayList<Photo>()
 
-    }
+        val stringRequest = object: StringRequest(linkTrang,
+            Response.Listener<String> { response ->
+
+                val gsonBuilder=GsonBuilder()
+                val gson=gsonBuilder.create()
+                val editorreslut = gson.fromJson<result>(response,result::class.java)!!
+                ans=editorreslut.photos
+
+                Log.d(TAG, "geteditor: in suceess "+ans.size)
+
+            },
+            ErrorListener {
+                Toast.makeText(context, "not able to fetch data", Toast.LENGTH_SHORT).show()
+            }
+        )
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "563492ad6f91700001000001064410a0217f42f5836f093e332ea9c0"
+                return headers
+            }
+        }
+        Log.d(TAG, "geteditor: calling fun"+ans.size)
+        queue.add(stringRequest)
+        return  ans
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     suspend fun getcolor():ArrayList<Photo>{
         val okHttpClient= OkHttpClient()
 //        val request: Request = Builder().url(url).headers(headerbuild).build()

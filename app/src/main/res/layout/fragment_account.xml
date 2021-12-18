@@ -3,12 +3,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="30dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".accountFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello account fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        app:cardCornerRadius="30dp"
+        >
+
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/ic_baseline_person_outline_24"
+    android:layout_gravity="center"
+
+    android:id="@+id/profilepic"/>
+    </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/whiteTextColor"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+
+                android:id="@+id/linearlayout"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputName"
+                    style="@style/parent"
+                    android:layout_marginTop="@dimen/loginViewsMargin">
+
+                    <EditText
+                        android:id="@+id/changeemail"
+                        style="@style/modifiedEditText"
+
+                        android:cursorVisible="false"
+                        android:hint="E-mail"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputEmailre"
+                    style="@style/parent"
+
+                    android:layout_marginTop="@dimen/loginViewsMargin">
+
+                    <EditText
+                        android:id="@+id/changepassword"
+                        style="@style/modifiedEditText"
+                        android:hint="change password"
+                        android:cursorVisible="false"
+                        android:drawableRight="@drawable/ic_baseline_edit_24"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/parent"
+                    android:id="@+id/renterpas"
+                    android:visibility="gone"
+
+                    android:layout_marginTop="@dimen/loginViewsMargin">
+
+                    <EditText
+                        android:id="@+id/reenterpassword"
+                        style="@style/modifiedEditText"
+
+                        android:hint="enter new password"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Change"
+                    android:backgroundTint="@color/purple_200"
+                    android:textColor="@color/white"
+                    android:visibility="gone"
+                    android:id="@+id/change"/>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+     android:layout_marginTop="30dp"
+            android:backgroundTint="@color/purple_200"
+
+        android:text="❤ Favourates️>"
+
+        android:id="@+id/checkfav"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/purple_200"
+
+            android:text="Log-out"
+
+            android:id="@+id/logout"/>
+    </LinearLayout>
 
 </FrameLayout>

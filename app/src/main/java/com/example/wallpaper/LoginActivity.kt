@@ -1,5 +1,7 @@
 package com.example.wallpaper
 
+import android.Manifest
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,11 +12,16 @@ import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.util.Log
 
 import com.google.firebase.auth.AuthResult
 
 import androidx.annotation.NonNull
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
+import com.example.wallpaper.wallpaper.MainActivity2
 import com.google.android.gms.tasks.OnCompleteListener
 import java.lang.Exception
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -41,6 +48,15 @@ class LoginActivity : AppCompatActivity() {
          passwordTextView = findViewById<EditText>(R.id.password);
          Btn = findViewById<Button>(R.id.login);
          progressbar = findViewById<ProgressBar>(R.id.progressBar);
+        val perm= ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SETTINGS)
+        val S= arrayOf(Manifest.permission.WRITE_SETTINGS)
+        if (perm== PackageManager.PERMISSION_DENIED){
+            Toast.makeText(this, "didnt get permission", Toast.LENGTH_SHORT).show()
+            ActivityCompat.requestPermissions(
+                this,
+                S,
+                121);
+        }
         val txt=findViewById<TextView>(R.id.back)
         txt.setOnClickListener {
             val intent=Intent(this,MainActivity::class.java)
@@ -84,8 +100,7 @@ class LoginActivity : AppCompatActivity() {
 
         mAuth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                Toast.makeText(this,"Login failed dont know error!!",Toast.LENGTH_SHORT).show();
-                if (task.isSuccessful) {
+                             if (task.isSuccessful) {
 
                     progressbar!!.visibility=View.GONE
 

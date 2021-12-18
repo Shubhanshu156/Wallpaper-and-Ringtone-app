@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".wallpaper_activity">
+
+
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/mnwalpaper"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/ic_baseline_music_note_24" />
+
+    <ProgressBar
+        android:id="@+id/prgrs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginBottom="30dp"
+
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/download"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:layout_weight="1"
+            android:background="@drawable/outline_file_download_black_20"
+
+            android:onClick="DownloadWallpaperEvent" />
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/applying"/>
+
+
+        <Button
+            android:id="@+id/applybtn"
+
+            android:layout_width="0dp"
+
+            android:layout_height="32dp"
+
+            android:layout_weight="6"
+            android:backgroundTint="@color/lightblue"
+            android:background="@drawable/applybtn"
+            android:text="Apply" />
+
+        <ToggleButton
+            android:id="@+id/fav"
+            android:layout_width="0dp"
+            android:layout_height="53dp"
+            android:layout_weight="1"
+            android:textOn=""
+            android:textOff=""
+            android:text=""
+
+            android:background="@drawable/round_circle"
+            />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+
