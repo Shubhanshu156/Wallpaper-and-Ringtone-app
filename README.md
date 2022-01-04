@@ -1,7 +1,8 @@
 
 # Wallpaper
 
-[![Only 32 Kb](https://badge-size.herokuapp.com/Naereen/StrapDown.js/master/strapdown.min.js)](https://github.com/Naereen/StrapDown.js/blob/master/strapdown.min.js)
+[![Only 3 mb](https://img.shields.io/badge/size-3mb-brightgreen)](github.com)
+
 [![Build](https://github.com/Haid-Faiz/QuizLand/actions/workflows/gradle_build_ci.yml/badge.svg)](https://github.com/Haid-Faiz/QuizLand/actions/workflows/gradle_build_ci.yml)
 [![Lint](https://github.com/Haid-Faiz/QuizLand/actions/workflows/lint_check_ci.yml/badge.svg)](https://github.com/Haid-Faiz/QuizLand/actions/workflows/lint_check_ci.yml)
 [![Platform](https://img.shields.io/badge/platform-android-blue.svg)](http://developer.android.com/index.html)
@@ -10,7 +11,8 @@
 
 **Wallpaper** is a  Wallpaper and ringtone Application which allows user to **set and download Wallpaper or ringtone**.You can also make any Wallpaper your favourite 
 ***You can Install the Wallpaper app from below 👇***</br>
-[Download Now](https://github.com/Shubhanshu156/Wallpaper-app/raw/master/app/release/app-release.apk)
+[![Download](https://img.shields.io/badge/-Download%20-brightgreen)](https://github.com/Shubhanshu156/Wallpaper-and-Ringtone-app/raw/master/app/release/app-release.apk)
+
 
 
 
