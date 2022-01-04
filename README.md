@@ -20,9 +20,9 @@
    </ul>
   <tr>
 <td>
-      <h3>Account Activity</h3><img src = "https://github.com/Shubhanshu156/Wallpaper-app/blob/master/gif2.gif" height = "370" width="180"></td>
-<td> <h3>Home Fragment</h3><img src = "https://github.com/Shubhanshu156/Wallpaper-app/blob/master/gif3.gif" height = "370" width="180"></td>
-<td> <h3>Ringtone Fragment</h3><img src = "https://github.com/Shubhanshu156/Wallpaper-app/blob/master/gif1.gif" height = "370" width="180"></td>
+      <h3>Account Activity</h3><img src = "https://github.com/Shubhanshu156/Wallpaper-and-Ringtone-app/blob/master/gif2.gif" height = "370" width="180"></td>
+<td> <h3>Home Fragment</h3><img src = "https://github.com/Shubhanshu156/Wallpaper-and-Ringtone-app/blob/master/gif3.gif" height = "370" width="180"></td>
+<td> <h3>Ringtone Fragment</h3><img src = "https://github.com/Shubhanshu156/Wallpaper-and-Ringtone-app/blob/master/gif1.gif" height = "370" width="180"></td>
   </tr>
 </table> 
    
