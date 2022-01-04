@@ -9,8 +9,7 @@
 [![Download](https://img.shields.io/badge/-Download%20-brightgreen)](https://github.com/Shubhanshu156/Wallpaper-and-Ringtone-app/raw/master/app/release/app-release.apk)
 
 
-**Wallpaper** is a  Wallpaper and ringtone Application which allows user to **set and download Wallpaper or ringtone**.You can also make any Wallpaper your favourite 
-***You can Install the Wallpaper app ***</br>
+**Wallpaper** is a  Wallpaper and ringtone Application which allows user to **set and download Wallpaper or ringtone**.
 
 
 
